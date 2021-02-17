@@ -10,7 +10,7 @@
 (setq package-selected-packages '( helm-xref org-ref rainbow-delimiters
 					     which-key diff-hl smex git-timemachine
 					     helm-flx deft helm-swoop use-package
-					     flycheck))
+					     flycheck org-cliplink org-roam org-download))
 
 (when (cl-find-if-not #'package-installed-p package-selected-packages)
   (package-refresh-contents)
@@ -180,15 +180,16 @@
 ;;;;;;;;;;;;;;;;;;;
 
 
-(require 'org)
-(require 'deft)
-(require 'org-ref)
-(require 'org-capture)
-(define-key global-map (kbd "C-c l") 'org-store-link)
-(define-key global-map (kbd "C-c a") 'org-agenda)
-(define-key global-map (kbd "C-c C-t") 'org-todo)
-(define-key global-map (kbd "C-c c") 'org-capture)
-(setq org-log-done t)
+;; (require 'org)
+;; (require 'deft)
+;; (require 'org-ref)
+;; (require 'org-capture)
+;; (define-key global-map (kbd "C-c l") 'org-store-link)
+;; (define-key global-map (kbd "C-c a") 'org-agenda)
+;; (define-key global-map (kbd "C-c C-t") 'org-todo)
+;; (define-key global-map (kbd "C-c c") 'org-capture)
+;; (setq org-log-done t)
+
 
 
 ;;;;;;;;;;;;;;;;;;;
