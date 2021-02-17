@@ -55,27 +55,6 @@
 (add-hook 'python-mode-hook 'rainbow-delimiters-mode)
 
 
-;; Custom functions provided by willbush
-;; https://github.com/willbush
-
-;;;###autoload
-(defun my/dos2unix ()
-  "Convert the current buffer to a Unix file encoding."
-  (interactive)
-  (set-buffer-file-coding-system 'utf-8-unix nil))
-
-;;;###autoload
-(defun my/unix2dos ()
-  "Convert the current buffer to a DOS file encoding."
-  (interactive)
-  (set-buffer-file-coding-system 'utf-8-dos nil))
-
-;;;###autoload
-(defun my/kill-all-buffers ()
-  "kill all buffers"
-  (interactive)
-  (mapc 'kill-buffer (buffer-list)))
-
 (require 'general-init)
 (require 'flycheck-init)
 (require 'helm-init)
