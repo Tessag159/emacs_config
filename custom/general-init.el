@@ -24,6 +24,11 @@
 ;; Capatilize word
 (global-unset-key (kbd "M-c"))
 
+;; I never use set-fill-column, and I accidentally
+;; hit the binding for it all the time when trying
+;; to use helm-find-files
+(global-set-key (kbd "C-x f") 'helm-find-files)
+
 ;; allow cycling backwards through frames
 ;; awesome for gdb-many-windows
 ;; (global-set-key (kbd "C-x p") 'previous-multiframe-window)
@@ -53,7 +58,11 @@
 (setq show-paren-delay 0)
 (set-face-background 'show-paren-match "lightcoral")
 (set-face-foreground 'show-paren-match "deeppink4")
-(rainbow-delimiters-mode t)
+
+
+;; Couldn't seem to get this to start up on its own, so now
+;; it gets a keyboard shortcut
+(global-set-key (kbd "C-c C-r") 'rainbow-delimiters-mode)
 
 ;; Y or N instead of Yes or No
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -208,8 +217,8 @@ Scores roughly between 0 and 100."
   (cua-scroll-down 1)
   (cua-mode))
 
-(global-set-key (kbd "M-n") 'ti/scroll-down-1)
-(global-set-key (kbd "M-p") 'ti/scroll-up-1)
+(global-set-key (kbd "M-p") 'ti/scroll-down-1)
+(global-set-key (kbd "M-n") 'ti/scroll-up-1)
 
 (defun ti/kill-this-buffer ()
   "Kill the current buffer"

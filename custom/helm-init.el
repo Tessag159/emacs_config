@@ -3,7 +3,6 @@
 ;; Turns on helm
 (require 'helm-config)
 (helm-mode)
-(helm-flx-mode)
 
 ;; Stop helm from popping up in a separate window if one is open
 (setq helm-split-window-in-side-p t)
@@ -93,7 +92,6 @@
 (global-set-key (kbd "C-c h o") 'helm-occur)
 (global-set-key (kbd "C-c h g") 'helm-google-suggest)
 (setq helm-swoop-split-direction 'split-window-vertically)
-(set-face-attribute 'helm-selection nil
-		    :background "midnight blue")
+
 
 (provide 'helm-init)

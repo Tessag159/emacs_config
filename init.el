@@ -11,13 +11,13 @@
 
 (setq package-selected-packages '( helm-xref org-ref rainbow-delimiters
 					     which-key diff-hl smex git-timemachine
-					     helm-flx deft helm-swoop use-package
+					     deft helm-swoop use-package
 					     flycheck org-cliplink org-roam org-download
 					     projectile diff-hl org-roam helm-file-preview
 					     helm-apt helm-flycheck helm-notmuch notmuch
 					     helm-org helm-smex helm-spotify org-books
-					     org-autolist org-doing  org-msg
-					     org-journal-list org-mru-clock org-time-budgets
+					     org-autolist org-doing org-msg
+					     org-mru-clock org-time-budgets
 					     org-tracktable org-wc dashboard python-mode
 					     writegood-mode helm-projectile ace-window))
 
@@ -33,10 +33,14 @@
 (push '(vertical-scroll-bars) default-frame-alist)
 (setq inhibit-startup-message t
       inhibit-splash-screen t)
-(add-to-list 'custom-theme-load-path
-	     (file-name-as-directory "~/.emacs.d/themes/"))
-(load-theme 'aalto-dark t t)
-(enable-theme 'aalto-dark)
+;; (add-to-list 'custom-theme-load-path
+;;	     (file-name-as-directory "~/.emacs.d/themes/"))
+;; (load-theme 'aalto-dark t t)
+;;(enable-theme 'aalto-dark)
+
+
+;; Would theme theme work better with doom-modeline?
+(load-theme 'leuven t)
 
 
 ;; Add custom loaded .el files
@@ -51,7 +55,7 @@
 (require 'helm-init)
 (require 'org-init)
 (require 'projectile-init)
-;(require 'org-journal-init)
+
 
 
 (custom-set-variables
@@ -60,10 +64,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(global-display-line-numbers-mode t)
- '(initial-frame-alist (quote ((fullscreen . maximum))))
  '(package-selected-packages
    (quote
-    (all-the-icons helm-xref org-ref rainbow-delimiters which-key diff-hl smex git-timemachine helm-flx deft helm-swoop use-package flycheck org-cliplink org-roam org-download projectile diff-hl org-roam helm-file-preview helm-apt helm-flycheck helm-notmuch notmuch helm-org helm-smex helm-spotify org-books org-autolist org-doing org-msg org-journal-list org-mru-clock org-time-budgets org-tracktable org-wc dashboard python-mode writegood-mode)))
+    (leuven-theme all-the-icons helm-xref org-ref rainbow-delimiters which-key diff-hl smex git-timemachine deft helm-swoop use-package flycheck org-cliplink org-roam org-download projectile diff-hl org-roam helm-file-preview helm-apt helm-flycheck helm-notmuch notmuch helm-org helm-smex helm-spotify org-books org-autolist org-doing org-msg org-mru-clock org-time-budgets org-tracktable org-wc dashboard python-mode writegood-mode)))
  '(show-paren-mode t)
  '(writegood-weasel-words
    (quote

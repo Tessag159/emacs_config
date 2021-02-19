@@ -1,4 +1,4 @@
-;; Org configuration
+;; Org (and org-roam, for some reason) configuration
 
 
 (require 'org)
@@ -9,6 +9,8 @@
 (define-key global-map (kbd "C-c a") 'org-agenda)
 (define-key global-map (kbd "C-c c") 'org-capture)
 (setq org-log-done t)
+
+(add-hook 'org-mode-hook 'org-mode)
 
 (setq org-roam-directory "/home/tess/org-roam")
 
@@ -30,7 +32,6 @@
 
 ;; (setq org-capture-templates
 ;;       '(    ;; ... other templates
-
 ;;         ("j" "Journal Entry"
 ;;              entry (file+datetree "~/journal.org")
 ;;              "* %?"
