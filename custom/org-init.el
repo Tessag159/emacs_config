@@ -1,21 +1,24 @@
 ;; Org (and org-roam, for some reason) configuration
 
 
-(require 'org)
-(require 'deft)
-(require 'org-ref)
-(require 'org-capture)
-(define-key global-map (kbd "C-c l") 'org-store-link)
-(define-key global-map (kbd "C-c a") 'org-agenda)
-(define-key global-map (kbd "C-c c") 'org-capture)
-(setq org-log-done t)
+(use-package org
+  :mode ("\\.org$\\'" . org-mode)
+  :interpreter ("org" . org-mode)
+  :commands (org-store-link org-agenda)
+  :bind
+  (("C-c l" . org-store-link)
+   ("C-c a" . org-agenda))
+  :hook
+  ((after-init . org-mode)
+   (after-init . org-roam-mode))
+  :config
+  (setq org-log-done t))
 
-(add-hook 'org-mode-hook 'org-mode)
+(use-package org-ref
+  :after (org))
 
-(setq org-roam-directory "/home/tess/org-roam")
-
-(add-hook 'after-init-hook 'org-roam-mode)
-
+(use-package deft
+  :after(org org-ref))
 
 
 ;; File creation template
@@ -28,7 +31,7 @@
 ;;  :unnarrowed t)
 
 
-;; I don't want this, it just shows syntax
+;; I don't want this customization, it just shows proper syntax
 
 ;; (setq org-capture-templates
 ;;       '(    ;; ... other templates

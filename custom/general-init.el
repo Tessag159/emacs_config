@@ -15,8 +15,13 @@
       ;; Remove scratch message
       initial-scratch-message nil)
 
-;; Display line numbers
-(global-display-line-numbers-mode)
+;; Display line numbers in programming and org mode
+(defun ti/display-line-numbers-on-hook ()
+  (display-line-numbers-mode t))
+
+
+(add-hook 'prog-mode-hook 'ti/display-line-numbers-on-hook)
+(add-hook 'org-mode-hook 'ti/display-line-numbers-on-hook)
 
 ;; I hate accidentally hitting these
 ;; Minimize Emacs
@@ -30,10 +35,6 @@
 ;; to use helm-find-files
 (global-set-key (kbd "C-x f") 'helm-find-files)
 
-;; allow cycling backwards through frames
-;; awesome for gdb-many-windows
-;; (global-set-key (kbd "C-x p") 'previous-multiframe-window)
-
 ;; Allows jumping from window to window
 ;; by an assigned character
 (require 'ace-window)
@@ -41,6 +42,7 @@
 ;; List of characters to assign to windows
 (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l))
 
+;; Swaps two active windows
 (global-set-key (kbd "C-c w") 'ace-swap-window)
 
 ;; refresh buffer when the file it is visiting changes
@@ -59,11 +61,7 @@
 (setq show-paren-delay 0)
 (set-face-background 'show-paren-match "lightcoral")
 (set-face-foreground 'show-paren-match "deeppink4")
-
-
-;; Couldn't seem to get this to start up on its own, so now
-;; it gets a keyboard shortcut
-(global-set-key (kbd "C-c C-r") 'rainbow-delimiters-mode)
+(rainbow-delimiters-mode)
 
 ;; Y or N instead of Yes or No
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -107,6 +105,7 @@
 ;; Helps me write gooder
 (require 'writegood-mode)
 
+;; Check the spelling in the current buffer
 (global-set-key (kbd "C-c b") 'ispell-buffer)
 
 ;; Provided by https://github.com/ag91
@@ -196,6 +195,7 @@ Scores roughly between 0 and 100."
 
 ;; end provided code
 
+;; Keybindings for the above functions
 (global-set-key (kbd "C-c g g") 'writegood-grade-level)
 (global-set-key (kbd "C-c g r") 'writegood-reading-ease)
 (global-set-key (kbd "C-c g w") 'writegood-mode)
@@ -266,8 +266,9 @@ Scores roughly between 0 and 100."
 
 ;; End provided code
 
+;; Keybindings for above functions
 (global-set-key (kbd "C-c f b") 'rename-file-and-buffer)
 (global-set-key (kbd "C-c i") 'increment-number-at-point)
-(global-set-key (kbd "C-c d") 'decrement-number-at-point)
+(global-set-key (kbd "C-c o") 'decrement-number-at-point)
 
 (provide 'general-init)
