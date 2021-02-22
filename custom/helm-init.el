@@ -1,14 +1,13 @@
 ;; Helm configuration
 
 ;; Turns on helm
-(require 'helm-config)
-(helm-mode)
 
 (use-package helm
-  :bind (([remap find-file] . helm-find-files)
+  :bind
+  (([remap find-file] . helm-find-files)
 	 ([remap execute-extended-command] . helm-M-x)
 	 ([remap switch-to-buffer] . helm-mini)
-	 ([remap list-buffers] . helm-mimi)
+	 ([remap list-buffers] . helm-mini)
 
 	 ("M-y" . helm-show-kill-ring)
 	 ("C-c s" . helm-multi-swoop-all)
@@ -18,6 +17,7 @@
 	 ("C-c h o" . helm-occur)
 	 ("C-c h g" . helm-google-suggest))
   :config
+  (helm-mode)
   ;; Stop helm from popping up in a separate window if one is open
   (setq helm-split-window-in-side-p t)
   (setq helm-swoop-split-with-multiple-windows nil)
@@ -38,14 +38,12 @@
 		   collect (with-current-buffer (window-buffer w)
 			     (cons (buffer-name) mode-line-format)))))
 
-
   (defun bottom-buffers-hide-mode-line ()
     (setq-default cursor-in-non-selected-windows nil)
     (mapc (lambda (elt)
 	    (with-current-buffer (car elt)
 	      (setq-local mode-line-format nil)))
 	  bottom-buffers))
-
 
   (defun bottom-buffers-show-mode-line ()
     (setq-default cursor-in-non-selected-windows t)
@@ -75,7 +73,6 @@
   (helm-exit-minibuffer-hook . bottom-buffers-show-mode-line)
   (helm-cleanup-hook . bottom-buffers-show-mode-line)
   (helm-minibuffer-set-up-hook . helm-hide-minibuffer-maybe))
-
 
 
 (provide 'helm-init)

@@ -1,6 +1,5 @@
 ;; Org (and org-roam, for some reason) configuration
 
-
 (use-package org
   :mode ("\\.org$\\'" . org-mode)
   :interpreter ("org" . org-mode)
@@ -20,27 +19,23 @@
 (use-package deft
   :after(org org-ref))
 
+(use-package org-roam
+  :after org
+  :config (org-roam-mode))
 
-;; File creation template
-;; Not sure where to put this
-
-;; ("d" "default" plain (function org-roam--capture-get-point)
-;;  "%?"
-;;  :file-name "%<%d-%m-%y_%H:%M:%S>-${slug}"
-;;  :head "#+title: ${title}\n"
-;;  :unnarrowed t)
-
-
-;; I don't want this customization, it just shows proper syntax
+(use-package org-journal
+  :config
+  (setq org-journal-dir "~/org-journal")
+  (setq org-journal-start-on-weekday 7)
+  (setq org-journal-date-format "%A, %B %d, %Y")
+  (setq org-journal-file-format "%d_%m_%Y")
+  :after (org))
 
 ;; (setq org-capture-templates
-;;       '(    ;; ... other templates
-;;         ("j" "Journal Entry"
-;;              entry (file+datetree "~/journal.org")
-;;              "* %?"
-;;              :empty-lines 1)
-
-;;             ;; ... other templates
-;;         ))
+;; 	'(("d" "default" plan (function org-journal-find-location)
+;; 	   "%?"
+;; 	   :file-name "%<%A-%N-%d-%Y_%H:%M:%S>-${slug}"
+;; 	   :head "#+title: ${title}\n"
+;; 	   :unnarrowed t)))
 
 (provide 'org-init)

@@ -14,15 +14,15 @@
 ;; Or would it be better to ensure they're all there at startup
 ;; instead of interrupting to install when I use a package that
 ;; isn't there?
-(setq package-selected-packages '( helm-xref org-ref rainbow-delimiters
+(setq package-selected-packages '( helm-xref org-ref rainbow-delimiters rainbow-mode
 					     which-key diff-hl smex git-timemachine
-					     deft helm-swoop use-package
+					     deft helm-swoop use-package zone-rainbow
 					     flycheck org-cliplink org-roam org-download
 					     projectile diff-hl org-roam helm-file-preview
 					     helm-apt helm-flycheck helm-notmuch notmuch
 					     helm-org helm-smex helm-spotify org-books
 					     org-autolist org-doing org-msg
-					     org-mru-clock org-time-budgets
+					     org-mru-clock org-time-budgets org-journal
 					     org-tracktable org-wc dashboard python-mode
 					     writegood-mode helm-projectile ace-window))
 
@@ -62,7 +62,6 @@
 (require 'projectile-init)
 
 
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -70,7 +69,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (leuven-theme all-the-icons helm-xref org-ref rainbow-delimiters which-key diff-hl smex git-timemachine deft helm-swoop use-package flycheck org-cliplink org-roam org-download projectile diff-hl org-roam helm-file-preview helm-apt helm-flycheck helm-notmuch notmuch helm-org helm-smex helm-spotify org-books org-autolist org-doing org-msg org-mru-clock org-time-budgets org-tracktable org-wc dashboard python-mode writegood-mode)))
+    (rainbow-mode zone-rainbow helm-config leuven-theme all-the-icons helm-xref org-ref rainbow-delimiters which-key diff-hl smex git-timemachine deft helm-swoop use-package flycheck org-cliplink org-roam org-download projectile diff-hl org-roam helm-file-preview helm-apt helm-flycheck helm-notmuch notmuch helm-org helm-smex helm-spotify org-books org-autolist org-doing org-msg org-mru-clock org-time-budgets org-tracktable org-wc dashboard python-mode writegood-mode)))
  '(show-paren-mode t)
  '(writegood-weasel-words
    (quote
@@ -83,7 +82,7 @@
  '(rainbow-delimiters-base-error-face ((t nil)))
  '(rainbow-delimiters-depth-1-face ((t (:inherit rainbow-delimiters-base-face :foreground "#e40000"))))
  '(rainbow-delimiters-depth-2-face ((t (:inherit rainbow-delimiters-base-face :foreground "#ff7400"))))
- '(rainbow-delimiters-depth-3-face ((t (:inherit rainbow-delimiters-base-face :foreground "#e1ff00"))))
+ '(rainbow-delimiters-depth-3-face ((t (:inherit rainbow-delimiters-base-face :foreground "#dff600"))))
  '(rainbow-delimiters-depth-4-face ((t (:inherit rainbow-delimiters-base-face :foreground "#1cff00"))))
  '(rainbow-delimiters-depth-5-face ((t (:inherit rainbow-delimiters-base-face :foreground "#00efff"))))
  '(rainbow-delimiters-depth-6-face ((t (:inherit rainbow-delimiters-base-face :foreground "#1700ff"))))

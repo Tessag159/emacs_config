@@ -1,4 +1,4 @@
-;; General settings
+;; General configuration
 
 (which-key-mode)
 (setq which-key-max-description-length 60)
@@ -35,15 +35,13 @@
 ;; to use helm-find-files
 (global-set-key (kbd "C-x f") 'helm-find-files)
 
-;; Allows jumping from window to window
-;; by an assigned character
-(require 'ace-window)
-(global-set-key (kbd "C-c o") 'ace-window)
-;; List of characters to assign to windows
-(setq aw-keys '(?a ?s ?d ?f ?j ?k ?l))
-
-;; Swaps two active windows
-(global-set-key (kbd "C-c w") 'ace-swap-window)
+;; Package for window management
+(use-package ace-window
+  :bind
+  ("C-c o" . ace-window)
+  ("C-c w" . ace-swap-window)
+  :init
+  (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l)))
 
 ;; refresh buffer when the file it is visiting changes
 (global-auto-revert-mode t)
@@ -59,9 +57,34 @@
 (require 'rainbow-delimiters)
 (show-paren-mode 1)
 (setq show-paren-delay 0)
-(set-face-background 'show-paren-match "lightcoral")
-(set-face-foreground 'show-paren-match "deeppink4")
-(rainbow-delimiters-mode)
+;; Hooks just don't work for this program
+;; (add-hook 'prog-mode #'rainbow-delimiters-mode)
+
+;; Take from zone.el and modified to rainbow instead
+(defvar rainbow-timer nil)
+(defun rainbow-when-idle (secs)
+  "Rainbow out when Emacs has been idle for SECS seconds."
+  (interactive "nHow long before I start rainbowing? (seconds): ")
+  (if (timerp zone-timer)
+      (cancel-timer zone-timer))
+  (setq zone-timer nil)
+  (or (<= secs 0)
+      (setq zone-timer (run-with-idle-timer secs t 'zone-rainbow))))
+(defun rainbow-leave-me-alone ()
+  "Don't zone out when Emacs is idle."
+  (interactive)
+  (if (timerp zone-timer)
+      (cancel-timer zone-timer))
+  (setq zone-timer nil)
+  (message "I won't zone out any more"))
+
+(defun ti/rainbow-stuff ()
+  "Used to turn on various rainbow-y packages like rainbow-delimiters
+zone-rainbow and rainbow-mode"
+  (rainbow-delimiters-mode)
+  (rainbow-mode))
+
+(add-hook 'prog-mode-hook 'ti/rainbow-stuff)
 
 ;; Y or N instead of Yes or No
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -93,114 +116,101 @@
  gdb-show-main t
 )
 
-
-
 ;; Python
 (require 'python-mode)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 
-;; Delete trailing whitespace on save
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-;; Helps me write gooder
-(require 'writegood-mode)
-
-;; Check the spelling in the current buffer
-(global-set-key (kbd "C-c b") 'ispell-buffer)
-
 ;; Provided by https://github.com/ag91
 ;; and modified slightly
-(defun writegood-fk-parameters (&optional rstart rend)
-  "Flesch-Kincaid reading parameters"
-  (let* ((start (cond (rstart rstart)
-                      ((and transient-mark-mode mark-active) (region-beginning))
-                      ('t (point-min))))
-         (end   (cond (rend rend)
-                      ((and transient-mark-mode mark-active) (region-end))
-                      ('t (point-max))))
-         (words     (float (writegood-count-words start end)))
-         (syllables (float (writegood-count-syllables start end)))
-         (sentences (float (writegood-count-sentences start end))))
-    (list sentences words syllables)))
 
-(defun writegood-reading-ease-score->comment (score) "")
-
-(defun writegood-calculate-reading-ease (&optional start end)
-  "Calculate score of Flesch-Kincaid reading ease test in the region bounded by START and END.
-
-Scores roughly between 0 and 100."
-  (let* ((params (writegood-fk-parameters start end))
-	 (sentences (nth 0 params))
-	 (words     (nth 1 params))
-	 (syllables (nth 2 params))
-	 (score  (- 206.835 (* 1.015 (/ words sentences)) (* 84.6 (/ syllables words)))))
-    score))
-
-(defun writegood-reading-ease (&optional start end)
-  "Flesch-Kincaid reading ease test in the region bounded by START and END.
+(use-package writegood-mode
+  :bind
+  ("C-c b" . ispell-buffer)
+  ("C-c g g" . writegood-grade-level)
+  ("C-c g r" . write-reading-ease)
+  ("C-c g w" . writegood-mode)
+  ("C-c v" . visual-line-mode)
+  :config
+  '(((defun writegood-fk-parameters (&optional rstart rend)
+      "Flesch-Kincaid reading parameters"
+      (let* ((start (cond (rstart rstart)
+			  ((and transient-mark-mode mark-active) (region-beginning))
+			  ('t (point-min))))
+	     (end   (cond (rend rend)
+			  ((and transient-mark-mode mark-active) (region-end))
+			  ('t (point-max))))
+	     (words     (float (writegood-count-words start end)))
+	     (syllables (float (writegood-count-syllables start end)))
+	     (sentences (float (writegood-count-sentences start end))))
+	(list sentences words syllables)))))
+  (defun writegood-reading-ease-score->comment (score) "")
+  (defun writegood-calculate-reading-ease (&optional start end)
+    "Calculate score of Flesch-Kincaid reading ease test in the region bounded by START and END.
 
 Scores roughly between 0 and 100."
-  (interactive)
-  (let ((score (writegood-calculate-reading-ease start end)))
-    (message "Flesch-Kincaid reading ease score: %.2f %s" score
-	     (writegood-reading-ease-score->comment score))))
-
-(defun writegoodmode-reading-ease-thing-at-point (thing)
-  (let* ((bounds (bounds-of-thing-at-point thing))
-         (b (car bounds))
-         (e (cdr bounds)))
-    (if (and
-         (not (null b))
-         (not (null e))
-         ;; this is a guess: when the interval between boundaries is
-         ;; huge, the paragraph is too big to be validated.
-         (< (- e b) 100000))
-        (let ((score (writegood-calculate-reading-ease b e)))
-          (message "%s reading ease score: %.2f %s" (symbol-name thing) score
-		   (writegood-reading-ease-score->comment score))))))
-
-(defun writegoodmode-reading-ease-sentence ()
-  (interactive)
-  (writegoodmode-reading-ease-thing-at-point 'sentence))
-
-(defun writegoodmode-reading-ease-paragraph ()
-  (interactive)
-  (writegoodmode-reading-ease-thing-at-point 'paragraph))
-
-(defun writegoodmode-reading-ease-page ()
-  (interactive)
-  (writegoodmode-reading-ease-thing-at-point 'buffer))(defun writegood-fk-parameters (&optional rstart rend)
-  "Flesh-Kincaid reading parameters"
-  (let* ((start (cond (rstart rstart)
-		      ((and transient-mark-mode mark-active) (region-beginning))
-		      ('t (point-min))))
-	 (end (cond (rend rend)
-		    ((and transient-mark-mode mark-active) (region-end))
-		    ('t (point-max))))
-	 (words (float (writegood-count-words start end)))
-	 (syllables (float (writegood-count-syllables start end)))
-	 (sentences (float (writegood-count-sentences start end))))
-    (list sentences words syllables)))
-
-(defun writegood-calculate-reading-ease (&optional start end)
-  "Calculate score of Flesch-Kincaid reading ease test in the region bounded by START and END.
+    (let* ((params (writegood-fk-parameters start end))
+	   (sentences (nth 0 params))
+	   (words     (nth 1 params))
+	   (syllables (nth 2 params))
+	   (score  (- 206.835 (* 1.015 (/ words sentences)) (* 84.6 (/ syllables words)))))
+      score))
+  (defun writegood-reading-ease (&optional start end)
+    "Flesch-Kincaid reading ease test in the region bounded by START and END.
 
 Scores roughly between 0 and 100."
-  (let* ((params (writegood-fk-parameters start end))
-	 (sentences (nth 0 params))
-	 (words     (nth 1 params))
-	 (syllables (nth 2 params))
-	 (score  (- 206.835 (* 1.015 (/ words sentences)) (* 84.6 (/ syllables words)))))
-    score))
+    (interactive)
+    (let ((score (writegood-calculate-reading-ease start end)))
+      (message "Flesch-Kincaid reading ease score: %.2f %s" score
+	       (writegood-reading-ease-score->comment score))))
+  (defun writegoodmode-reading-ease-thing-at-point (thing)
+     (let* ((bounds (bounds-of-thing-at-point thing))
+	    (b (car bounds))
+	    (e (cdr bounds)))
+       (if (and
+	    (not (null b))
+	    (not (null e))
+	    ;; this is a guess: when the interval between boundaries is
+	    ;; huge, the paragraph is too big to be validated.
+	    (< (- e b) 100000))
+	   (let ((score (writegood-calculate-reading-ease b e)))
+	     (message "%s reading ease score: %.2f %s" (symbol-name thing) score
+		      (writegood-reading-ease-score->comment score))))))
+
+   (defun writegoodmode-reading-ease-sentence ()
+     (interactive)
+     (writegoodmode-reading-ease-thing-at-point 'sentence))
+
+   (defun writegoodmode-reading-ease-paragraph ()
+     (interactive)
+     (writegoodmode-reading-ease-thing-at-point 'paragraph))
+
+   (defun writegoodmode-reading-ease-page ()
+     (interactive)
+     (writegoodmode-reading-ease-thing-at-point 'buffer))(defun writegood-fk-parameters (&optional rstart rend)
+     "Flesh-Kincaid reading parameters"
+     (let* ((start (cond (rstart rstart)
+			 ((and transient-mark-mode mark-active) (region-beginning))
+			 ('t (point-min))))
+	    (end (cond (rend rend)
+		       ((and transient-mark-mode mark-active) (region-end))
+		       ('t (point-max))))
+	    (words (float (writegood-count-words start end)))
+	    (syllables (float (writegood-count-syllables start end)))
+	    (sentences (float (writegood-count-sentences start end))))
+       (list sentences words syllables)))
+
+   (defun writegood-calculate-reading-ease (&optional start end)
+     "Calculate score of Flesch-Kincaid reading ease test in the region bounded by START and END.
+
+Scores roughly between 0 and 100."
+     (let* ((params (writegood-fk-parameters start end))
+	    (sentences (nth 0 params))
+	    (words     (nth 1 params))
+	    (syllables (nth 2 params))
+	    (score  (- 206.835 (* 1.015 (/ words sentences)) (* 84.6 (/ syllables words)))))
+       score)))
 
 ;; end provided code
-
-;; Keybindings for the above functions
-(global-set-key (kbd "C-c g g") 'writegood-grade-level)
-(global-set-key (kbd "C-c g r") 'writegood-reading-ease)
-(global-set-key (kbd "C-c g w") 'writegood-mode)
-(global-set-key (kbd "C-c v") 'visual-line-mode)
-
 
 ;; Simple scroll from https://github.com/bnbeckwith
 ;; Modified slightly
@@ -228,7 +238,6 @@ Scores roughly between 0 and 100."
 
 
 (global-set-key (kbd "C-x C-k") 'ti/kill-this-buffer)
-
 ;; End provided code
 
 ;; Function from https://github.com/alexkehayias/
@@ -269,6 +278,6 @@ Scores roughly between 0 and 100."
 ;; Keybindings for above functions
 (global-set-key (kbd "C-c f b") 'rename-file-and-buffer)
 (global-set-key (kbd "C-c i") 'increment-number-at-point)
-(global-set-key (kbd "C-c o") 'decrement-number-at-point)
+(global-set-key (kbd "C-c u") 'decrement-number-at-point)
 
 (provide 'general-init)
