@@ -24,7 +24,8 @@
 					     org-autolist org-doing org-msg doom-modeline
 					     org-mru-clock org-time-budgets org-journal
 					     org-tracktable org-wc dashboard python-mode
-					     writegood-mode helm-projectile ace-window))
+					     writegood-mode helm-projectile ace-window
+					     org-bullets))
 
 
 
@@ -67,6 +68,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("~/org-journal/23_02_2021")))
  '(package-selected-packages
    (quote
     (doom-modeline rainbow-mode zone-rainbow helm-config leuven-theme all-the-icons helm-xref org-ref rainbow-delimiters which-key diff-hl smex git-timemachine deft helm-swoop use-package flycheck org-cliplink org-roam org-download projectile diff-hl org-roam helm-file-preview helm-apt helm-flycheck helm-notmuch notmuch helm-org helm-smex helm-spotify org-books org-autolist org-doing org-msg org-mru-clock org-time-budgets org-tracktable org-wc dashboard python-mode writegood-mode)))

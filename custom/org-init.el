@@ -1,27 +1,36 @@
-;; Org (and org-roam, for some reason) configuration
+;; Org related configuration
 
 (use-package org
-  :mode ("\\.org$\\'" . org-mode)
-  :interpreter ("org" . org-mode)
-  :commands (org-store-link org-agenda)
+  :mode
+  ("\\.org$\\'" . org-mode)
+  :interpreter
+  ("org" . org-mode)
+  :commands
+  (org-store-link org-agenda)
   :bind
   (("C-c l" . org-store-link)
    ("C-c a" . org-agenda))
   :hook
   ((after-init . org-mode)
-   (after-init . org-roam-mode))
+   (after-init . org-roam-mode)
+   (org-mode . visual-line-mode))
   :config
-  (setq org-log-done t))
+  (setq org-log-done t)
+  (setq org-todo-keywords
+	'((sequence "TODO" "IN-PROGRESS" "HOLD" "NEXT" "DONE"))))
 
 (use-package org-ref
-  :after (org))
+  :after
+  (org))
 
 (use-package deft
-  :after(org org-ref))
+  :after
+  (org org-ref))
 
 (use-package org-roam
   :after org
-  :config (org-roam-mode))
+  :config
+  (org-roam-mode))
 
 (use-package org-journal
   :config
@@ -31,11 +40,10 @@
   (setq org-journal-file-format "%d_%m_%Y")
   :after (org))
 
-;; (setq org-capture-templates
-;; 	'(("d" "default" plan (function org-journal-find-location)
-;; 	   "%?"
-;; 	   :file-name "%<%A-%N-%d-%Y_%H:%M:%S>-${slug}"
-;; 	   :head "#+title: ${title}\n"
-;; 	   :unnarrowed t)))
-
+(use-package org-bullets
+  :hook
+  (org-mood . (lambda () (org-bullets-mode 1)))
+  :after
+  (org))
+  
 (provide 'org-init)
