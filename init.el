@@ -21,7 +21,7 @@
 					     projectile diff-hl org-roam helm-file-preview
 					     helm-apt helm-flycheck helm-notmuch notmuch
 					     helm-org helm-smex helm-spotify org-books
-					     org-autolist org-doing org-msg
+					     org-autolist org-doing org-msg doom-modeline
 					     org-mru-clock org-time-budgets org-journal
 					     org-tracktable org-wc dashboard python-mode
 					     writegood-mode helm-projectile ace-window))
@@ -69,7 +69,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (rainbow-mode zone-rainbow helm-config leuven-theme all-the-icons helm-xref org-ref rainbow-delimiters which-key diff-hl smex git-timemachine deft helm-swoop use-package flycheck org-cliplink org-roam org-download projectile diff-hl org-roam helm-file-preview helm-apt helm-flycheck helm-notmuch notmuch helm-org helm-smex helm-spotify org-books org-autolist org-doing org-msg org-mru-clock org-time-budgets org-tracktable org-wc dashboard python-mode writegood-mode)))
+    (doom-modeline rainbow-mode zone-rainbow helm-config leuven-theme all-the-icons helm-xref org-ref rainbow-delimiters which-key diff-hl smex git-timemachine deft helm-swoop use-package flycheck org-cliplink org-roam org-download projectile diff-hl org-roam helm-file-preview helm-apt helm-flycheck helm-notmuch notmuch helm-org helm-smex helm-spotify org-books org-autolist org-doing org-msg org-mru-clock org-time-budgets org-tracktable org-wc dashboard python-mode writegood-mode)))
  '(show-paren-mode t)
  '(writegood-weasel-words
    (quote
@@ -79,6 +79,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(doom-modeline-buffer-minor-mode ((t (:inherit font-lock-doc-face :foreground "#7fff00" :slant normal))))
+ '(doom-modeline-project-dir ((t (:inherit (font-lock-string-face bold) :foreground "#7fff00"))))
  '(rainbow-delimiters-base-error-face ((t nil)))
  '(rainbow-delimiters-depth-1-face ((t (:inherit rainbow-delimiters-base-face :foreground "#e40000"))))
  '(rainbow-delimiters-depth-2-face ((t (:inherit rainbow-delimiters-base-face :foreground "#ff7400"))))
