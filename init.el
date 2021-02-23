@@ -24,8 +24,7 @@
 					     org-autolist org-doing org-msg doom-modeline
 					     org-mru-clock org-time-budgets org-journal
 					     org-tracktable org-wc dashboard python-mode
-					     writegood-mode helm-projectile ace-window
-					     org-bullets))
+					     writegood-mode helm-projectile ace-window))
 
 
 

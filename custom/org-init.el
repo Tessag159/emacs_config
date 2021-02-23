@@ -17,7 +17,7 @@
   :config
   (setq org-log-done t)
   (setq org-todo-keywords
-	'((sequence "TODO" "IN-PROGRESS" "HOLD" "NEXT" "DONE"))))
+	'((sequence "TODO" "IN-PROGRESS" "HOLD" "NEXT" "|" "CANCELLED" "DONE"))))
 
 (use-package org-ref
   :after
@@ -40,10 +40,4 @@
   (setq org-journal-file-format "%d_%m_%Y")
   :after (org))
 
-(use-package org-bullets
-  :hook
-  (org-mood . (lambda () (org-bullets-mode 1)))
-  :after
-  (org))
-  
 (provide 'org-init)
