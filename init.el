@@ -79,6 +79,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(doom-modeline-bar-inactive ((t (:background "#335ea8" :foreground "#6dadd7"))))
  '(doom-modeline-buffer-minor-mode ((t (:inherit font-lock-doc-face :foreground "#7fff00" :slant normal))))
  '(doom-modeline-project-dir ((t (:inherit (font-lock-string-face bold) :foreground "#7fff00"))))
  '(rainbow-delimiters-base-error-face ((t nil)))
