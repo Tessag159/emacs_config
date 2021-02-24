@@ -45,8 +45,6 @@
 (setq inhibit-startup-message t
       inhibit-splash-screen t)
 
-
-;; Would theme theme work better with doom-modeline?
 (load-theme 'leuven t)
 
 ;; Add custom loaded .el files
@@ -60,21 +58,20 @@
 (require 'helm-init)
 (require 'org-init)
 (require 'projectile-init)
-
+(require 'diff-hl-init)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/org-journal/23_02_2021")))
+ '(org-agenda-files '("~/org-journal/23_02_2021"))
  '(package-selected-packages
-   (quote
-    (doom-modeline rainbow-mode zone-rainbow helm-config leuven-theme all-the-icons helm-xref org-ref rainbow-delimiters which-key diff-hl smex git-timemachine deft helm-swoop use-package flycheck org-cliplink org-roam org-download projectile diff-hl org-roam helm-file-preview helm-apt helm-flycheck helm-notmuch notmuch helm-org helm-smex helm-spotify org-books org-autolist org-doing org-msg org-mru-clock org-time-budgets org-tracktable org-wc dashboard python-mode writegood-mode)))
+   '(crux doom-modeline rainbow-mode zone-rainbow helm-config leuven-theme all-the-icons helm-xref org-ref rainbow-delimiters which-key diff-hl smex git-timemachine deft helm-swoop use-package flycheck org-cliplink org-roam org-download projectile diff-hl org-roam helm-file-preview helm-apt helm-flycheck helm-notmuch notmuch helm-org helm-smex helm-spotify org-books org-autolist org-doing org-msg org-mru-clock org-time-budgets org-tracktable org-wc dashboard python-mode writegood-mode))
+>>>>>>> use-package
  '(show-paren-mode t)
  '(writegood-weasel-words
-   (quote
-    ("many" "various" "very" "fairly" "several" "extremely" "exceedingly" "quite" "remarkably" "few" "surprisingly" "mostly" "largely" "huge" "tiny" "are a number" "is a number" "excellent" "interestingly" "significantly" "substantially" "clearly" "vast" "relatively" "completely" "literally" "not rocket science" "outside the box" "virtually" "research shows" "studies show" "I would say" "probably" "possibly" "definitely" "could be" "that being said" "most" "a bit" "almost" "basically" "fairly" "often" "usually" "good"))))
+   '("many" "various" "very" "fairly" "several" "extremely" "exceedingly" "quite" "remarkably" "few" "surprisingly" "mostly" "largely" "huge" "tiny" "are a number" "is a number" "excellent" "interestingly" "significantly" "substantially" "clearly" "vast" "relatively" "completely" "literally" "not rocket science" "outside the box" "virtually" "research shows" "studies show" "I would say" "probably" "possibly" "definitely" "could be" "that being said" "most" "a bit" "almost" "basically" "fairly" "often" "usually" "good")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
