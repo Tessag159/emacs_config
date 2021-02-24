@@ -15,16 +15,18 @@
 ;; instead of interrupting to install when I use a package that
 ;; isn't there?
 (setq package-selected-packages '( helm-xref org-ref rainbow-delimiters rainbow-mode
-					     which-key diff-hl smex git-timemachine
+					     which-key diff-hl
 					     deft helm-swoop use-package zone-rainbow
-					     flycheck org-cliplink org-roam org-download
+					     flycheck org-roam
 					     projectile diff-hl org-roam helm-file-preview
-					     helm-apt helm-flycheck helm-notmuch notmuch
-					     helm-org helm-smex helm-spotify org-books
-					     org-autolist org-doing org-msg doom-modeline
-					     org-mru-clock org-time-budgets org-journal
-					     org-tracktable org-wc dashboard python-mode
-					     writegood-mode helm-projectile ace-window))
+					     helm-apt helm-flycheck
+					     helm-org org-journal
+					     dashboard python-mode
+					     writegood-mode helm-projectile ace-window crux))
+
+
+;; Packages I want to add
+;; smex org-cliplink org-download notmuch helm-notmuch org-books org-autolist org-doing org-msg helm-smex org-mru-clock org-time-budgets org-tracktable org-wc
 
 
 
@@ -59,6 +61,9 @@
 (require 'org-init)
 (require 'projectile-init)
 (require 'diff-hl-init)
+(require 'crux-init)
+
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -68,7 +73,6 @@
  '(org-agenda-files '("~/org-journal/23_02_2021"))
  '(package-selected-packages
    '(crux doom-modeline rainbow-mode zone-rainbow helm-config leuven-theme all-the-icons helm-xref org-ref rainbow-delimiters which-key diff-hl smex git-timemachine deft helm-swoop use-package flycheck org-cliplink org-roam org-download projectile diff-hl org-roam helm-file-preview helm-apt helm-flycheck helm-notmuch notmuch helm-org helm-smex helm-spotify org-books org-autolist org-doing org-msg org-mru-clock org-time-budgets org-tracktable org-wc dashboard python-mode writegood-mode))
->>>>>>> use-package
  '(show-paren-mode t)
  '(writegood-weasel-words
    '("many" "various" "very" "fairly" "several" "extremely" "exceedingly" "quite" "remarkably" "few" "surprisingly" "mostly" "largely" "huge" "tiny" "are a number" "is a number" "excellent" "interestingly" "significantly" "substantially" "clearly" "vast" "relatively" "completely" "literally" "not rocket science" "outside the box" "virtually" "research shows" "studies show" "I would say" "probably" "possibly" "definitely" "could be" "that being said" "most" "a bit" "almost" "basically" "fairly" "often" "usually" "good")))

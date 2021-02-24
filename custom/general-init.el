@@ -112,10 +112,6 @@ zone-rainbow and rainbow-mode"
 ;; Hippie expansion for word before point
 (global-set-key (kbd "M-/") 'hippie-expand)
 
-(use-package crux
-  :bind
-  (("C-a" . crux-move-beginning-of-line)))
-
 ;; Save bookmark history
 (setq bookmark-save-flag t)
 
