@@ -15,13 +15,11 @@
       ;; Remove scratch message
       initial-scratch-message nil)
 
-;; Display line numbers in programming and org mode
+;; Display line numbers in programming mode
 (defun ti/display-line-numbers-on-hook ()
   (display-line-numbers-mode t))
 
-
 (add-hook 'prog-mode-hook 'ti/display-line-numbers-on-hook)
-(add-hook 'org-mode-hook 'ti/display-line-numbers-on-hook)
 
 ;; I hate accidentally hitting these
 ;; Minimize Emacs
@@ -34,6 +32,16 @@
 ;; hit the binding for it all the time when trying
 ;; to use helm-find-files
 (global-set-key (kbd "C-x f") 'helm-find-files)
+
+(setq use-package-compute-statistics t)
+
+(use-package emacs
+  :init
+  ;; Auto-close parens
+  (electric-pair-mode +1)
+  ;; Disable for <
+  (add-function :before-until electric-pair-inhibit-predicate
+		(lambda (c) (eq c ?<))))
 
 ;; Package for window management
 (use-package ace-window
