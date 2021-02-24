@@ -1,7 +1,7 @@
 ;; Helm configuration
 
 ;; Turns on helm
-(require 'helm-config)
+(require 'helm)
 (helm-mode)
 
 ;; Stop helm from popping up in a separate window if one is open
