@@ -26,9 +26,11 @@
 
 
 ;; Packages I want to add
-;; smex org-cliplink org-download notmuch helm-notmuch org-books org-autolist org-doing org-msg helm-smex org-mru-clock org-time-budgets org-tracktable org-wc
+;; smex org-cliplink org-download notmuch helm-notmuch org-books org-autolist org-doing
+;; org-msg helm-smex org-mru-clock org-time-budgets
 
-
+;; Packages I might want to add
+;; enh-ruby-mode format-all ruby-end org-tracktable org-wc
 
 ;; Install all packages in the above list if they're not already installed
 (when (cl-find-if-not #'package-installed-p package-selected-packages)
