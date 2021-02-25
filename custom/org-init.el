@@ -18,7 +18,7 @@
   :config
   (setq org-log-done t)
   (setq org-todo-keywords
-	'((sequence "TODO" "IN-PROGRESS" "HOLD" "NEXT" "|" "CANCELLED" "DONE"))))
+	'((sequence "TODO" "IN-PROGRESS" "HOLD" "NEXT" "Appointment" "|" "CANCELLED" "DONE"))))
 
 (use-package org-ref
   :after

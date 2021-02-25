@@ -15,7 +15,7 @@
 ;; instead of interrupting to install when I use a package that
 ;; isn't there?
 (setq package-selected-packages '( helm-xref org-ref rainbow-delimiters rainbow-mode
-					     which-key diff-hl
+					     which-key diff-hl web-beautify
 					     deft helm-swoop use-package zone-rainbow
 					     flycheck org-roam
 					     projectile diff-hl org-roam helm-file-preview
@@ -56,7 +56,6 @@
 
 
 ;; Load custom .el files
-(require 'general-init)
 (require 'dashboard-init)
 (require 'flycheck-init)
 (require 'helm-init)
@@ -64,6 +63,13 @@
 (require 'projectile-init)
 (require 'diff-hl-init)
 (require 'crux-init)
+(require 'ace-window-init)
+(require 'custom-keybind-init)
+(require 'misc-custom-func-init)
+(require 'misc-setq-init)
+(require 'rainbow-init)
+(require 'writegood-init)
+(require 'general-init)
 
 
 
@@ -72,12 +78,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files '("~/org-journal/23_02_2021"))
+ '(org-agenda-files (quote ("~/org/Tasks.org" "~/org/Blog.org")))
  '(package-selected-packages
-   '(crux doom-modeline rainbow-mode zone-rainbow helm-config leuven-theme all-the-icons helm-xref org-ref rainbow-delimiters which-key diff-hl smex git-timemachine deft helm-swoop use-package flycheck org-cliplink org-roam org-download projectile diff-hl org-roam helm-file-preview helm-apt helm-flycheck helm-notmuch notmuch helm-org helm-smex helm-spotify org-books org-autolist org-doing org-msg org-mru-clock org-time-budgets org-tracktable org-wc dashboard python-mode writegood-mode))
+   (quote
+    (web-beautify crux doom-modeline rainbow-mode zone-rainbow helm-config leuven-theme all-the-icons helm-xref org-ref rainbow-delimiters which-key diff-hl smex git-timemachine deft helm-swoop use-package flycheck org-cliplink org-roam org-download projectile diff-hl org-roam helm-file-preview helm-apt helm-flycheck helm-notmuch notmuch helm-org helm-smex helm-spotify org-books org-autolist org-doing org-msg org-mru-clock org-time-budgets org-tracktable org-wc dashboard python-mode writegood-mode)))
  '(show-paren-mode t)
  '(writegood-weasel-words
-   '("many" "various" "very" "fairly" "several" "extremely" "exceedingly" "quite" "remarkably" "few" "surprisingly" "mostly" "largely" "huge" "tiny" "are a number" "is a number" "excellent" "interestingly" "significantly" "substantially" "clearly" "vast" "relatively" "completely" "literally" "not rocket science" "outside the box" "virtually" "research shows" "studies show" "I would say" "probably" "possibly" "definitely" "could be" "that being said" "most" "a bit" "almost" "basically" "fairly" "often" "usually" "good")))
+   (quote
+    ("many" "various" "very" "fairly" "several" "extremely" "exceedingly" "quite" "remarkably" "few" "surprisingly" "mostly" "largely" "huge" "tiny" "are a number" "is a number" "excellent" "interestingly" "significantly" "substantially" "clearly" "vast" "relatively" "completely" "literally" "not rocket science" "outside the box" "virtually" "research shows" "studies show" "I would say" "probably" "possibly" "definitely" "could be" "that being said" "most" "a bit" "almost" "basically" "fairly" "often" "usually" "good"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -89,7 +97,7 @@
  '(rainbow-delimiters-base-error-face ((t nil)))
  '(rainbow-delimiters-depth-1-face ((t (:inherit rainbow-delimiters-base-face :foreground "#e40000"))))
  '(rainbow-delimiters-depth-2-face ((t (:inherit rainbow-delimiters-base-face :foreground "#ff7400"))))
- '(rainbow-delimiters-depth-3-face ((t (:inherit rainbow-delimiters-base-face :foreground "#dff600"))))
+ '(rainbow-delimiters-depth-3-face ((t (:inherit rainbow-delimiters-base-face :foreground "#c4c765"))))
  '(rainbow-delimiters-depth-4-face ((t (:inherit rainbow-delimiters-base-face :foreground "#1cff00"))))
  '(rainbow-delimiters-depth-5-face ((t (:inherit rainbow-delimiters-base-face :foreground "#00efff"))))
  '(rainbow-delimiters-depth-6-face ((t (:inherit rainbow-delimiters-base-face :foreground "#1700ff"))))

@@ -3,7 +3,6 @@
 
 (use-package crux
   :bind
-  ("C-c n" . crux-cleanup-buffer-or-region)
   ("C-c d" . crux-duplicate-current-line-or-region)
   ("C-c t" . crux-visit-term-buffer)
   ("C-c ," . crux-find-user-init-file)
