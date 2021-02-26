@@ -18,7 +18,7 @@
 					     which-key diff-hl web-beautify
 					     deft helm-swoop use-package zone-rainbow
 					     flycheck org-roam
-					     projectile diff-hl org-roam helm-file-preview
+					     projectile helm-file-preview
 					     helm-apt helm-flycheck
 					     helm-org org-journal
 					     dashboard python-mode
@@ -28,6 +28,9 @@
 ;; Packages I want to add
 ;; smex org-cliplink org-download notmuch helm-notmuch org-books org-autolist org-doing
 ;; org-msg helm-smex org-mru-clock org-time-budgets
+
+;; Packages I need to learn
+;; helm-xref org-ref web-beautify deft org-roam projectile helm-file-preview helm-apt helm-org helm-projectile
 
 ;; Packages I might want to add
 ;; enh-ruby-mode format-all ruby-end org-tracktable org-wc
@@ -94,6 +97,7 @@
  '(doom-modeline-bar-inactive ((t (:background "#335ea8" :foreground "#6dadd7"))))
  '(doom-modeline-buffer-minor-mode ((t (:inherit font-lock-doc-face :foreground "#7fff00" :slant normal))))
  '(doom-modeline-project-dir ((t (:inherit (font-lock-string-face bold) :foreground "#7fff00"))))
+ '(org-checkbox-statistics-todo ((t (:background "light salmon" :foreground "black"))))
  '(rainbow-delimiters-base-error-face ((t nil)))
  '(rainbow-delimiters-depth-1-face ((t (:inherit rainbow-delimiters-base-face :foreground "#e40000"))))
  '(rainbow-delimiters-depth-2-face ((t (:inherit rainbow-delimiters-base-face :foreground "#ff7400"))))
