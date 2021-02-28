@@ -24,18 +24,11 @@
 ;; Y or N instead of Yes or No
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; Font face settings
-(set-face-attribute 'default nil
-		    :family "Hack"
-		    :height 108
-		    :weight 'normal
-		    :width 'normal)
+;; ;; Make .h files c++ mode
+;; (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
-;; Make .h files c++ mode
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-
-;; Python
-(require 'python-mode)
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+;; ;; Python
+;; (require 'python-mode)
+;; (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 
 (provide 'general-init)

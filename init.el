@@ -46,11 +46,8 @@
 (setq use-package-always-ensure t)
 
 ;; Set these early to avoid screen flash
-(push '(menu-bar-lines . 0) default-frame-alist)
-(push '(tool-bar-lines . 0) default-frame-alist)
-(push '(vertical-scroll-bars) default-frame-alist)
-(setq inhibit-startup-message t
-      inhibit-splash-screen t)
+(setq inhibit-startup-message t)
+(setq inhibit-splash-screen t)
 
 (load-theme 'leuven t)
 
