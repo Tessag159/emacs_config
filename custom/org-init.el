@@ -22,7 +22,16 @@
 
 (use-package org-ref
   :after
-  (org))
+  (org)
+  :config
+  (setq reftex-default-bibliography '("~/bibliography/references.bib"))
+  (setq org-ref-bibliography-notes "~/bibliography/notes.org")
+  (setq org-ref-default-bibliography '("~/bibliography/references.bib"))
+  (setq org-ref-pdf-directory "~/bibliography/bibtex-pdfs/")
+  (setq bibtex-completion-bibliography "~/bibliography/references.bib")
+  (setq bibtex-completion-library-path "~/bibliography/bibtex-pdfs/")
+  (setq bibtex-completion-notes-path "~/bibliography/helm-bibtex-notes.org")
+  (setq bibtex-completion-pdf-open-function 'org-open-file))
 
 (use-package deft
   :after
@@ -30,8 +39,28 @@
 
 (use-package org-roam
   :after org
+  :commands
+  (org-roam-find-file org-roam-insert org-roam)
+  :bind
+  ;; Potentially create a hydra for this
+  ("C-c C-r f" . org-roam-find-file)
+  ("C-c C-r i" . org-roam-insert)
+  ("C-c C-r b" . org-roam)
+  :hook
+  (after-init . org-roam-mode)
   :config
-  (org-roam-mode))
+  (setq org-roam-db-update-method 'immediate)
+  ;; Figure out org-ref to add further information to templates
+  (setq org-roam-capture-templates '(("d" "Default" plain (function org-roam-capture--get-point)
+				      "%?"
+				      :file-name "%<%Y%m%d%H%M%S>-${slug}"
+				      :head "#+title: ${title}\n#+roam_tags: ${tags}\n"
+				      :unnarrowed t)
+				     ("a" "Article Reference" plain (function org-roam-capture-get--point)
+				      "%?"
+				      :file-name "%<%Y%m%d%H%M%S>-${slug}"
+				      :head "#+title ${title}\n#+roam_tags: ${tags}\n#+roam_key: ${key}"
+				      :unnarrowed t))))
 
 (use-package org-journal
   ;; This stops org-journal from loading for some reason...
@@ -47,6 +76,10 @@
   (global-set-key (kbd "C-c f a") 'org-agenda-file-to-front)
   :after (org))
 
+(use-package org-books
+  :after (org)
+  :config
+  (setq org-books-file "~/org/Books.org"))
 ;; Pretty stuff
 ;; From https://mstempl.netlify.app/post/beautify-org-mode/
 

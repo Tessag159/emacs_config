@@ -17,16 +17,16 @@
 (setq package-selected-packages '( helm-xref org-ref rainbow-delimiters rainbow-mode
 					     which-key diff-hl web-beautify
 					     deft helm-swoop use-package zone-rainbow
-					     flycheck org-roam
+					     flycheck org-roam helm-bibtex
 					     projectile helm-file-preview
 					     helm-apt helm-flycheck
 					     helm-org org-journal
-					     dashboard python-mode
+					     dashboard python-mode org-books
 					     writegood-mode helm-projectile ace-window crux))
 
 
 ;; Packages I want to add
-;; smex org-cliplink org-download notmuch helm-notmuch org-books org-autolist org-doing
+;; smex org-cliplink org-download notmuch helm-notmuch org-autolist org-doing
 ;; org-msg helm-smex org-mru-clock org-time-budgets
 
 ;; Packages I need to learn
@@ -81,7 +81,7 @@
  '(org-agenda-files (quote ("~/org/Tasks.org" "~/org/Blog.org")))
  '(package-selected-packages
    (quote
-    (web-beautify crux doom-modeline rainbow-mode zone-rainbow helm-config leuven-theme all-the-icons helm-xref org-ref rainbow-delimiters which-key diff-hl smex git-timemachine deft helm-swoop use-package flycheck org-cliplink org-roam org-download projectile diff-hl org-roam helm-file-preview helm-apt helm-flycheck helm-notmuch notmuch helm-org helm-smex helm-spotify org-books org-autolist org-doing org-msg org-mru-clock org-time-budgets org-tracktable org-wc dashboard python-mode writegood-mode)))
+    (org-roam-server helm-bibtexkey helm-books helm-xref org-ref rainbow-delimiters rainbow-mode which-key diff-hl web-beautify deft helm-swoop use-package zone-rainbow flycheck org-roam helm-bibtex projectile helm-file-preview helm-apt helm-flycheck helm-org org-journal org-roam-bibtex dashboard python-mode writegood-mode helm-projectile ace-window crux)))
  '(show-paren-mode t)
  '(writegood-weasel-words
    (quote
