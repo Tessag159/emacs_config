@@ -15,12 +15,12 @@
 ;; instead of interrupting to install when I use a package that
 ;; isn't there?
 (setq package-selected-packages '(org-ref rainbow-delimiters rainbow-mode
-					     which-key diff-hl web-beautify
+					     which-key diff-hl
 					     deft helm-swoop use-package zone-rainbow
 					     flycheck org-roam helm-bibtex
 					     projectile helm-file-preview
-					     helm-flycheck 
-					     helm-org org-journal
+					     helm-flycheck show-css
+					     helm-org org-journal impatient-mode
 					     dashboard python-mode
 					     writegood-mode helm-projectile ace-window crux))
 
@@ -70,6 +70,7 @@
 (require 'rainbow-init)
 (require 'writegood-init)
 (require 'pdf-init)
+(require 'web-init)
 (require 'general-init)
 
 

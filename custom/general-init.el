@@ -25,7 +25,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Make .h files c++ mode
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode)
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 ;; Python
 (require 'python-mode)
