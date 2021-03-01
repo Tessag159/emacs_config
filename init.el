@@ -14,14 +14,14 @@
 ;; Or would it be better to ensure they're all there at startup
 ;; instead of interrupting to install when I use a package that
 ;; isn't there?
-(setq package-selected-packages '( helm-xref org-ref rainbow-delimiters rainbow-mode
+(setq package-selected-packages '(org-ref rainbow-delimiters rainbow-mode
 					     which-key diff-hl web-beautify
 					     deft helm-swoop use-package zone-rainbow
 					     flycheck org-roam helm-bibtex
 					     projectile helm-file-preview
-					     helm-apt helm-flycheck
+					     helm-flycheck 
 					     helm-org org-journal
-					     dashboard python-mode org-books
+					     dashboard python-mode
 					     writegood-mode helm-projectile ace-window crux))
 
 
@@ -30,7 +30,7 @@
 ;; org-msg helm-smex org-mru-clock org-time-budgets
 
 ;; Packages I need to learn
-;; helm-xref org-ref web-beautify deft org-roam projectile helm-file-preview helm-apt helm-org helm-projectile
+;; org-ref web-beautify deft org-roam projectile helm-file-preview helm-org helm-projectile
 
 ;; Packages I might want to add
 ;; enh-ruby-mode format-all ruby-end org-tracktable org-wc
@@ -69,6 +69,7 @@
 (require 'misc-setq-init)
 (require 'rainbow-init)
 (require 'writegood-init)
+(require 'pdf-init)
 (require 'general-init)
 
 
@@ -78,10 +79,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/org/Tasks.org" "~/org/Blog.org")))
+ '(org-agenda-files
+   (quote
+    ("~/org/Books.org" "~/org/Tasks.org" "~/org/Blog.org")))
  '(package-selected-packages
    (quote
-    (org-roam-server helm-bibtexkey helm-books helm-xref org-ref rainbow-delimiters rainbow-mode which-key diff-hl web-beautify deft helm-swoop use-package zone-rainbow flycheck org-roam helm-bibtex projectile helm-file-preview helm-apt helm-flycheck helm-org org-journal org-roam-bibtex dashboard python-mode writegood-mode helm-projectile ace-window crux)))
+    (show-css shr-tag-pre-highlight skewer-mode skewer-reload-stylesheets zotelo org-roam-server helm-bibtexkey helm-books org-ref rainbow-delimiters rainbow-mode which-key diff-hl web-beautify deft helm-swoop use-package zone-rainbow flycheck org-roam helm-bibtex projectile helm-file-preview helm-flycheck helm-org org-journal org-roam-bibtex dashboard python-mode writegood-mode helm-projectile ace-window crux)))
  '(show-paren-mode t)
  '(writegood-weasel-words
    (quote

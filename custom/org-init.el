@@ -23,6 +23,10 @@
 (use-package org-ref
   :after
   (org)
+  ;; :commands
+  ;; ()
+  ;; :hook
+  ;; ()
   :config
   (setq reftex-default-bibliography '("~/bibliography/references.bib"))
   (setq org-ref-bibliography-notes "~/bibliography/notes.org")
@@ -40,26 +44,33 @@
 (use-package org-roam
   :after org
   :commands
-  (org-roam-find-file org-roam-insert org-roam)
+  (org-roam-find-file org-roam-insert org-roam org-ref-helm-insert-cite-link)
   :bind
-  ;; Potentially create a hydra for this
-  ("C-c C-r f" . org-roam-find-file)
-  ("C-c C-r i" . org-roam-insert)
-  ("C-c C-r b" . org-roam)
+  ("C-c c f" . org-roam-find-file)
+  (:map org-mode-map
+	("C-c c i" . org-roam-insert)
+	("C-c c b" . org-roam)
+	("C-c c c" . org-ref-helm-insert-cite-link))
   :hook
   (after-init . org-roam-mode)
   :config
   (setq org-roam-db-update-method 'immediate)
+  (setq org-roam-buffer-window-parameters '((no-delete-other-windows . t)))
   ;; Figure out org-ref to add further information to templates
-  (setq org-roam-capture-templates '(("d" "Default" plain (function org-roam-capture--get-point)
+  (setq org-roam-capture-templates '(("t" "New Thought" plain (function org-roam--capture-get-point)
 				      "%?"
 				      :file-name "%<%Y%m%d%H%M%S>-${slug}"
 				      :head "#+title: ${title}\n#+roam_tags: ${tags}\n"
 				      :unnarrowed t)
-				     ("a" "Article Reference" plain (function org-roam-capture-get--point)
+				     ("a" "Article Reference" plain (function org-roam--capture-get-point)
 				      "%?"
 				      :file-name "%<%Y%m%d%H%M%S>-${slug}"
-				      :head "#+title ${title}\n#+roam_tags: ${tags}\n#+roam_key: ${key}"
+				      :head "#+title: ${title}\n#+roam_tags: ${tags}\n#+author: ${author}\n#+type: Article\n#+roam_key: cite:${cite_key}"
+				      :unnarrowed t)
+				     ("b" "Book Reference" plain (function org-roam--capture-get-point)
+				      "%?"
+				      :file-name "%<%Y%m%d%H%M%S>-${slug}"
+				      :head "#+title: ${title}\n#+roam_tags: ${tags}\n#+author: ${author}\n#+type: Book\n#+roam_key: cite:${cite_key}"
 				      :unnarrowed t))))
 
 (use-package org-journal
@@ -76,10 +87,6 @@
   (global-set-key (kbd "C-c f a") 'org-agenda-file-to-front)
   :after (org))
 
-(use-package org-books
-  :after (org)
-  :config
-  (setq org-books-file "~/org/Books.org"))
 ;; Pretty stuff
 ;; From https://mstempl.netlify.app/post/beautify-org-mode/
 
