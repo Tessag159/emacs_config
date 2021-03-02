@@ -6,10 +6,14 @@
   :interpreter
   ("org" . org-mode)
   :commands
-  (org-store-link org-agenda)
+  (org-store-link org-agenda org-remove-file
+		  org-agenda-file-to-front org-goto)
   :bind
-  (("C-c l" . org-store-link)
-   ("C-c a" . org-agenda))
+  ("C-c l" . org-store-link)
+  ("C-c a" . org-agenda)
+  ("C-c f r" . org-remove-file)
+  ("C-c f a" . org-agenda-file-to-front)
+  ("C-c j" . org-goto)
   :hook
   ((after-init . org-mode)
    (after-init . org-roam-mode)
@@ -17,16 +21,28 @@
    (org-mode . variable-pitch-mode))
   :config
   (setq org-log-done t)
+  (setq org-goto-interface 'outline-path-completion)
+  (setq org-outline-path-complete-in-steps nil)
   (setq org-todo-keywords
-	'((sequence "TODO" "IN-PROGRESS" "HOLD" "NEXT" "Appointment" "|" "CANCELLED" "DONE"))))
+	'((sequence "TODO" "IN-PROGRESS" "HOLD" "NEXT" "APPOINTMENT" "|" "CANCELLED" "DONE"))))
+
+(defvar books-file "/home/tess/org/Books.org"
+  "The absolute value of the file where I keep my books stored on my system.")
+
+(defun ti/open-books-file ()
+  "Opens the file located at 'books file' if the variable exists."
+  (interactive)
+  (if books-file
+      (find-file books-file)
+    (message "No books file provided.")))
 
 (use-package org-ref
   :after
   (org)
-  ;; :commands
-  ;; ()
-  ;; :hook
-  ;; ()
+  :commands
+  ()
+  :bind
+  ()
   :config
   (setq reftex-default-bibliography '("~/bibliography/references.bib"))
   (setq org-ref-bibliography-notes "~/bibliography/notes.org")
@@ -47,10 +63,10 @@
   (org-roam-find-file org-roam-insert org-roam org-ref-helm-insert-cite-link)
   :bind
   ("C-c c f" . org-roam-find-file)
+  ("C-c C-b" . ti/open-books-file)
   (:map org-mode-map
 	("C-c c i" . org-roam-insert)
-	("C-c c b" . org-roam)
-	("C-c c c" . org-ref-helm-insert-cite-link))
+	("C-c c b" . org-roam))
   :hook
   (after-init . org-roam-mode)
   :config
@@ -74,17 +90,11 @@
 				      :unnarrowed t))))
 
 (use-package org-journal
-  ;; This stops org-journal from loading for some reason...
-  ;; :bind
-  ;; (("C-c f r" . org-remove-file)
-  ;;  ("C-c f a" . org-agenda-file-to-front))
   :config
   (setq org-journal-dir "~/org-journal")
   (setq org-journal-start-on-weekday 7)
   (setq org-journal-date-format "%A, %B %d, %Y")
   (setq org-journal-file-format "%d_%m_%Y")
-  (global-set-key (kbd "C-c f r") 'org-remove-file)
-  (global-set-key (kbd "C-c f a") 'org-agenda-file-to-front)
   :after (org))
 
 ;; Pretty stuff
