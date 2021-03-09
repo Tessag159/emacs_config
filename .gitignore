@@ -5,3 +5,5 @@ transient/
 projectile-bookmarks.eld
 session*
 themes/
+*.db
+*.cache

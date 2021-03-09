@@ -14,19 +14,13 @@
 ;; Or would it be better to ensure they're all there at startup
 ;; instead of interrupting to install when I use a package that
 ;; isn't there?
-(setq package-selected-packages '(org-ref rainbow-delimiters rainbow-mode flymake-sass
-					     which-key emmet-mode helm-emmet
-					     deft helm-swoop use-package zone-rainbow
-					     flycheck org-roam helm-bibtex robe flymake-css
-					     projectile helm-file-preview projectile-rails
-					     helm-flycheck show-css web-mode flymake-easy
-					     helm-org org-journal impatient-mode flymake-ruby
-					     dashboard python-mode js2-mode helm-rails 
-					     writegood-mode helm-projectile ace-window crux
-					     sass-mode smex org-cliplink org-download notmuch
-					     helm-notmuch org-autolist org-doing org-msg helm-smex
-					     org-mru-clock org-time-budgets enh-ruby-mode
-					     format-all ruby-end))
+(setq package-selected-packages '(rainbow-delimiters rainbow-mode which-key 
+					     helm-swoop use-package zone-rainbow
+					     flycheck org-roam
+					     projectile helm-file-preview
+					     helm-flycheck writegood-mode
+					     helm-org org-journal ace-window crux
+					     dashboard python-mode helm-projectile))
 
 
 ;; Packages I need to learn
@@ -34,7 +28,7 @@
 ;; js2-mode emmet-mode helm-emmet helm-rails projectile-rails robe flymake-css flymake-easy
 ;; flymake-ruby flymake-sass sass-mode enh-ruby-mode format-all ruby-end
 ;; smex org-cliplink org-download notmuch helm-notmuch org-autolist org-doing
-;; org-msg helm-smex org-mru-clock org-time-budgets 
+;; org-msg helm-smex org-mru-clock org-time-budgets js2-mode
 
 
 ;; Install all packages in the above list if they're not already installed
@@ -70,8 +64,6 @@
 (require 'misc-setq-init)
 (require 'rainbow-init)
 (require 'writegood-init)
-(require 'pdf-init)
-(require 'web-init)
 (require 'general-init)
 
 
@@ -86,7 +78,7 @@
     ("~/org/Books.org" "~/org/Tasks.org" "~/org/Blog.org")))
  '(package-selected-packages
    (quote
-    (show-css shr-tag-pre-highlight skewer-mode skewer-reload-stylesheets zotelo org-roam-server helm-bibtexkey helm-books org-ref rainbow-delimiters rainbow-mode which-key web-beautify deft helm-swoop use-package zone-rainbow flycheck org-roam helm-bibtex projectile helm-file-preview helm-flycheck helm-org org-journal org-roam-bibtex dashboard python-mode writegood-mode helm-projectile ace-window crux)))
+    (org-ref rainbow-delimiters rainbow-mode which-key deft helm-swoop use-package zone-rainbow flycheck org-roam helm-bibtex projectile helm-file-preview helm-flycheck flymake-easy writegood-mode helm-org org-journal ace-window crux dashboard python-mode helm-projectile)))
  '(show-paren-mode t)
  '(writegood-weasel-words
    (quote

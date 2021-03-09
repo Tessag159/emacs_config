@@ -8,8 +8,8 @@
  (rear-context-string . " Next\n* Reading\n")
  (position . 269))
 ("org-capture-last-stored"
- (filename . "~/org-roam/20210228180029-test_note.org")
- (front-context-string . "#+title: test-no")
+ (filename . "~/org-roam/20210306204549-goal_of_school.org")
+ (front-context-string . "#+title: goal-of")
  (rear-context-string)
  (position . 1))
 )

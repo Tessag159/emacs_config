@@ -79,5 +79,4 @@
 
 (global-set-key (kbd "C-c n") 'ti/indent-buffer)
 
-
 (provide 'misc-custom-func-init)
