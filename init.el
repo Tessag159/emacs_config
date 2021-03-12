@@ -16,9 +16,9 @@
 ;; isn't there?
 (setq package-selected-packages '(rainbow-delimiters rainbow-mode which-key 
 					     helm-swoop use-package zone-rainbow
-					     flycheck org-roam
-					     projectile helm-file-preview
-					     helm-flycheck writegood-mode
+					     flycheck org-roam auctex cdlatex
+					     projectile helm-file-preview yasnippet
+					     helm-flycheck writegood-mode yasnippet-snippets
 					     helm-org org-journal ace-window crux
 					     dashboard python-mode helm-projectile))
 
@@ -44,6 +44,8 @@
 ;; Set these early to avoid screen flash
 (setq inhibit-startup-message t)
 (setq inhibit-splash-screen t)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
 
 (load-theme 'leuven t)
 

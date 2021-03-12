@@ -79,4 +79,14 @@
 
 (global-set-key (kbd "C-c n") 'ti/indent-buffer)
 
+(defun ti/insert-pretty-equation ()
+  (interactive)
+  (insert "\\textbf{FORMULA } for the #\n")
+  (insert "\\begin{displaymath}\n\n")
+  (insert "\\end{displaymath}")
+  (backward-char 50))
+
+
+(global-set-key (kbd "C-c C-u") 'ti/insert-pretty-equation)
+
 (provide 'misc-custom-func-init)

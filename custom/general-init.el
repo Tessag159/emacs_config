@@ -31,4 +31,12 @@
 (require 'python-mode)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 
+;; Move this later
+ 	
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
+
+
 (provide 'general-init)
+
